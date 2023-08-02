@@ -56,9 +56,12 @@ function onSubmit(event) {
     };
     li.id = store.phone;
 
-    axios.post("https://crudcrud.com/api/29a9226259c14f63a1bb4cf8dd68e5ba/appointmentData",store)
+    axios.get("https://crudcrud.com/api/29a9226259c14f63a1bb4cf8dd68e5ba/appointmentData")
         .then((respone) => {
             console.log(respone)
+            for(var i=0; i<respone.data.length; i++){
+              onSubmit(respone.data[i])
+            }
         })
         .catch((err)=> {
             console.log(err)

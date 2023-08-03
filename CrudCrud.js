@@ -21,8 +21,7 @@ function submitdetails(event){
 
 
 
-
-    localStorage.setItem(obj.description,JSON.stringify(obj)) 
+  localStorage.setItem(obj.description,JSON.stringify(obj)) 
     showuseronscreen (obj) 
 
 } 
@@ -52,6 +51,17 @@ function deleteUser(userId){
     } )
 }
 
+function editUser(){
+    axios.put("https://crudcrud.com/api/bd835745bc2e45aa8b9e83640c08e212/appointmentData", obj)
+    .then((response)=> {
+        showuseronscreen (response.data)
+        console.log(response)
+    })
+    .catch((err)=> {
+        document.body.innerHTML = document.body.innerHTML + "<h4> Something went wrong"
+        console.log(err)
+    })  
+}
 
 
 function showuseronscreen (obj){ 
@@ -80,6 +90,7 @@ function showuseronscreen (obj){
         document.getElementById("description").value = obj.description 
         document.getElementById("catalogue").value = obj.catalogue 
 
+        editUser()
     } 
     childelem.appendChild(deletebutton) 
     childelem.appendChild(editbutton) 

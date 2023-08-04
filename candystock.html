@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin page</title>
+
+</head>
+<body>
+
+
+    <form id="my-form">
+
+        <label for="Item Name">Item Name:</label>
+        <input type="text" required placeholder="Enter Item name" id="Item">
+
+        <label for="Description">Item Description:</label>
+        <input type="text" required placeholder="Enter Description" id="Description">
+
+        <label for="Price">Price:</label>
+        <input type="number" required placeholder="Enter Price" id="Price">
+
+        <label for="Quantity">Quantity:</label>
+        <input type="number" required placeholder="Enter Quantity" id="Quantity">
+
+
+      <input class="btn" type="submit" value="Add item">
+      <h1>  Items </h1>
+
+    </form>
+
+  <ul  id="outputList">
+
+  </ul>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
+  <script src="candystock.js"></script>
+</body>
+</html>

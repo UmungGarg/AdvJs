@@ -1,5 +1,5 @@
 let val = document.addEventListener("submit", listDetails);
-const apiUrl = 'https://crudcrud.com/api/29a5d7fa60e5431c9af142bd3f74aa7b/admin'; 
+const apiUrl = 'https://crudcrud.com/api/86c7129a8ae84899b00da34de4f4fdf8/admin'; 
 
 async function listDetails(event){
     event.preventDefault();
@@ -8,10 +8,11 @@ async function listDetails(event){
 
     let obj={
         ItemName: ItemName, 
-        Description: Description
+        Description: Description,
+        flag: "UnDone"
     }
     try { 
-        const response = await axios.post("https://crudcrud.com/api/29a5d7fa60e5431c9af142bd3f74aa7b/admin", obj) 
+        const response = await axios.post("https://crudcrud.com/api/86c7129a8ae84899b00da34de4f4fdf8/admin", obj) 
  
         showProductOnScreen(response.data) 
  
@@ -24,7 +25,7 @@ async function listDetails(event){
 
 window.addEventListener('DOMContentLoaded',  
 async () => { 
-    const respnse = await axios.get("https://crudcrud.com/api/29a5d7fa60e5431c9af142bd3f74aa7b/admin") 
+    const respnse = await axios.get("https://crudcrud.com/api/86c7129a8ae84899b00da34de4f4fdf8/admin") 
     try  
     { 
         for (let i = 0; i < respnse.data.length; i++) { 
@@ -61,6 +62,7 @@ function showProductOnScreen(obj) {
     childelem.removeChild(btn2);
         let toData = await axios.get(`${apiUrl}/${obj._id}`); 
         let toObject = toData.data; 
+        toObject.flag="Done";
         delete toObject._id; 
         childe1lem.innerHTML=childelem.textContent; 
           await axios.put(`${apiUrl}/${obj._id}`,toObject); 
@@ -68,9 +70,16 @@ function showProductOnScreen(obj) {
         parent1elem.appendChild(childe1lem); 
         parentelem.removeChild(childelem)
       }; 
-      childe1lem.innerHTML=childe1lem;
+
       parentelem.appendChild(childelem); 
     childelem.appendChild(btn1);
     childelem.appendChild(btn2); 
+    if(obj.flag=="Done"){
+        parentelem.removeChild(childelem);
+        parent1elem.appendChild(childelem);
+        childelem.removeChild(btn1);
+        childelem.removeChild(btn2);
+        
+    }
 }
 
